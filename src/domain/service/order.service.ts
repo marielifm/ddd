@@ -1,12 +1,10 @@
+import Order from '../entity/order';
+import Customer from '../entity/customer';
+import OrderItem from '../entity/orderItem';
 
-import Order from "../entity/order";
-import Customer from "../entity/customer";
-import OrderItem from "../entity/orderItem";
-
-import { v4 as uuid } from 'uuid'
+import { v4 as uuid } from 'uuid';
 
 export default class OrderService {
-
   static total(orders: Order[]): number {
     return orders.reduce((acc, order) => acc + order.total(), 0);
   }

@@ -1,6 +1,6 @@
-import { Product } from "../../domain/entity/product";
-import ProductRepositoryInterface from "../../domain/repository/product-repository.interface"
-import ProductModel from "../db/sequelize/model/product.model";
+import { Product } from '../../domain/entity/product';
+import ProductRepositoryInterface from '../../domain/repository/product-repository.interface';
+import ProductModel from '../db/sequelize/model/product.model';
 
 export default class ProductRepository implements ProductRepositoryInterface {
   async create(entity: Product): Promise<void> {
@@ -8,17 +8,20 @@ export default class ProductRepository implements ProductRepositoryInterface {
       id: entity.id,
       name: entity.name,
       price: entity.price
-    })
+    });
   }
   async update(entity: Product): Promise<void> {
-    await ProductModel.update({
-      name: entity.name,
-      price: entity.price
-    }, {
-      where: {
-        id: entity.id
+    await ProductModel.update(
+      {
+        name: entity.name,
+        price: entity.price
+      },
+      {
+        where: {
+          id: entity.id
+        }
       }
-    })
+    );
   }
   async find(id: string): Promise<Product> {
     const product = await ProductModel.findOne({
@@ -26,17 +29,13 @@ export default class ProductRepository implements ProductRepositoryInterface {
         id: id
       }
     });
-    return new Product(
-      product.id,
-      product.name,
-      product.price
-    )
+    return new Product(product.id, product.name, product.price);
   }
   async findAll(): Promise<Product[]> {
     const productModels = await ProductModel.findAll();
-    return productModels.map((productModel) =>
-      new Product(productModel.id, productModel.name, productModel.price)
+    return productModels.map(
+      (productModel) =>
+        new Product(productModel.id, productModel.name, productModel.price)
     );
   }
-
 }

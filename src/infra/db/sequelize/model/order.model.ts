@@ -5,14 +5,14 @@ import {
   Column,
   ForeignKey,
   BelongsTo,
-  HasMany,
-} from "sequelize-typescript";
-import CustomerModel from "../model/customer.model";
-import OrderItemModel from "./order-item.model";
+  HasMany
+} from 'sequelize-typescript';
+import CustomerModel from '../model/customer.model';
+import OrderItemModel from './order-item.model';
 
 @Table({
-  tableName: "orders",
-  timestamps: false,
+  tableName: 'orders',
+  timestamps: false
 })
 export default class OrderModel extends Model {
   @PrimaryKey

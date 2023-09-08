@@ -1,5 +1,4 @@
-import Address from "./address";
-
+import Address from './address';
 
 export default class Customer {
   private _id: string;
@@ -45,7 +44,7 @@ export default class Customer {
 
   activate() {
     if (this._address === undefined) {
-      throw new Error("Address is mandatory to activate a customer");
+      throw new Error('Address is mandatory to activate a customer');
     }
     this._active = true;
   }
@@ -64,11 +63,10 @@ export default class Customer {
 
   validate() {
     if (this._id.length === 0) {
-      throw new Error("ID is required");
+      throw new Error('ID is required');
     }
     if (this._name.length === 0) {
-      throw new Error("name is required");
+      throw new Error('name is required');
     }
   }
-
 }

@@ -1,7 +1,7 @@
-import Customer from "../../domain/entity/customer"
-import Address from "../../domain/entity/address"
-import CustomerRepositoryInterface from "../../domain/repository/customer-repository.interface"
-import CustomerModel from "../db/sequelize/model/customer.model"
+import Customer from '../../domain/entity/customer';
+import Address from '../../domain/entity/address';
+import CustomerRepositoryInterface from '../../domain/repository/customer-repository.interface';
+import CustomerModel from '../db/sequelize/model/customer.model';
 
 export default class CustomerRepository implements CustomerRepositoryInterface {
   async create(entity: Customer): Promise<void> {
@@ -13,7 +13,7 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
       zipcode: entity.Address.zip,
       city: entity.Address.city,
       active: entity.isActive(),
-      rewardPoints: entity.rewardPoints,
+      rewardPoints: entity.rewardPoints
     });
   }
 
@@ -26,12 +26,12 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
         zipcode: entity.Address.zip,
         city: entity.Address.city,
         active: entity.isActive(),
-        rewardPoints: entity.rewardPoints,
+        rewardPoints: entity.rewardPoints
       },
       {
         where: {
-          id: entity.id,
-        },
+          id: entity.id
+        }
       }
     );
   }
@@ -41,12 +41,12 @@ export default class CustomerRepository implements CustomerRepositoryInterface {
     try {
       customerModel = await CustomerModel.findOne({
         where: {
-          id,
+          id
         },
-        rejectOnEmpty: true,
+        rejectOnEmpty: true
       });
     } catch (error) {
-      throw new Error("Customer not found");
+      throw new Error('Customer not found');
     }
 
     const customer = new Customer(id, customerModel.name);

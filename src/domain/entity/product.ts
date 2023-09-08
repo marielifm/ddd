@@ -1,6 +1,4 @@
-
 export class Product {
-
   private _id: string;
   private _name: string;
   private _price: number;
@@ -14,15 +12,15 @@ export class Product {
 
   validate(): boolean {
     if (this._id.length === 0) {
-      throw new Error("Id is required");
+      throw new Error('Id is required');
     }
 
     if (this._name.length === 0) {
-      throw new Error("Name is required");
+      throw new Error('Name is required');
     }
 
     if (this._price < 0) {
-      throw new Error("Price is invalid");
+      throw new Error('Price is invalid');
     }
 
     return true;
@@ -49,5 +47,4 @@ export class Product {
   get price(): number {
     return this._price;
   }
-
 }
