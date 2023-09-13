@@ -20,7 +20,6 @@ export default class OrderRepository implements OrderRepositoryInterface {
       );
       await Promise.all(
         items.map(async (item) => {
-          console.log(item);
           await OrderItemModel.upsert({
             id: item.id,
             name: item.name,
