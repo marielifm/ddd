@@ -11,7 +11,7 @@ describe('Order unit tests', () => {
   it('should throw error when id customer is empty', () => {
     expect(() => {
       let order = new Order('123', '', []);
-    }).toThrowError('Customer Id is required');
+    }).toThrowError('Customer ID is required');
   });
 
   it('should throw error when item is empty', () => {

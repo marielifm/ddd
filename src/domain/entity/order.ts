@@ -35,7 +35,7 @@ export default class Order {
       throw new Error('Id is required');
     }
     if (this._customerId.length === 0) {
-      throw new Error('CustomerId is required');
+      throw new Error('Customer ID is required');
     }
     if (this._items.length === 0) {
       throw new Error('Items are required');
