@@ -1,6 +1,10 @@
+import Address from '../../entity/address';
+import Customer from '../../entity/customer';
+import CustomerAddressChangedEvent from '../customer/address-changed.event';
 import CustomerCreatedEvent from '../customer/customer-created.event';
 import SendConsoleLog1Handler from '../customer/handler/send-console-log1.handler';
 import SendConsoleLog2Handler from '../customer/handler/send-console-log2.handler';
+import SendConsoleLog3Handler from '../customer/handler/send-console-log3.handler';
 import SendEmailWhenProductIsCreatedHandler from '../product/handler/send-email-when-productIs-created.handler';
 import ProductCreatedEvent from '../product/product-created.event';
 import EventDispatcher from './event-dispatcher';
@@ -190,5 +194,37 @@ describe('Domain events tests', () => {
     eventDispatcher.notify(userCreatedEvent);
     expect(spyEventHandler1).toHaveBeenCalled();
     expect(spyEventHandler2).toHaveBeenCalled();
+  });
+
+  it('should notify event handler when customer changes the address', () => {
+    const eventDispatcher = new EventDispatcher();
+    const eventHandler = new SendConsoleLog3Handler();
+    const spyEventHandler = jest.spyOn(eventHandler, 'handle');
+
+    eventDispatcher.register('CustomerAddressChangedEvent', eventHandler);
+
+    expect(
+      eventDispatcher.getEventHandlers['CustomerAddressChangedEvent']
+    ).toBeDefined();
+    expect(
+      eventDispatcher.getEventHandlers['CustomerAddressChangedEvent'].length
+    ).toBe(1);
+    expect(
+      eventDispatcher.getEventHandlers['CustomerAddressChangedEvent'][0]
+    ).toMatchObject(eventHandler);
+
+    const customer = new Customer('1', 'User One');
+    const address = new Address('Street Address', 1, '00000000', 'City');
+    customer.changeAddress(address);
+
+    const changeAddressEvent = new CustomerAddressChangedEvent({
+      id: customer.id,
+      nome: customer.name,
+      endereco: customer.Address.street
+    });
+
+    eventDispatcher.notify(changeAddressEvent);
+
+    expect(spyEventHandler).toHaveBeenCalled();
   });
 });
