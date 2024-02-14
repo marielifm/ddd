@@ -14,15 +14,15 @@ export class Product implements ProductInterface {
 
   validate(): boolean {
     if (this._id.length === 0) {
-      throw new Error('Id is required');
+      throw new Error('id is required');
     }
 
     if (this._name.length === 0) {
-      throw new Error('Name is required');
+      throw new Error('name is required');
     }
 
     if (this._price < 0) {
-      throw new Error('Price is invalid');
+      throw new Error('price is invalid');
     }
 
     return true;
