@@ -6,7 +6,7 @@ import {
 } from './create.product.dto';
 import { v4 as uuid } from 'uuid';
 
-export default class ProductCreateUseCase {
+export default class CreateProductUseCase {
   private productRepository: ProductRepositoryInterface;
 
   constructor(productRepository: ProductRepositoryInterface) {

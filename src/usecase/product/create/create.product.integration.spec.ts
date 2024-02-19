@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize-typescript';
 import ProductModel from '../../../infra/product/repository/sequelize/product.model';
 import ProductRepository from '../../../infra/product/repository/sequelize/product.repository';
-import ProductCreateUseCase from './create.product.usecase';
+import CreateProductUseCase from './create.product.usecase';
 
 describe('Create Product Use Case Integration Tests', () => {
   let sequelize: Sequelize;
@@ -24,7 +24,7 @@ describe('Create Product Use Case Integration Tests', () => {
 
   it('should create a product', async () => {
     const repository = new ProductRepository();
-    const useCase = new ProductCreateUseCase(repository);
+    const useCase = new CreateProductUseCase(repository);
 
     const input = {
       name: 'Product',
@@ -42,7 +42,7 @@ describe('Create Product Use Case Integration Tests', () => {
 
   it('should thrown an error when name is missing', async () => {
     const repository = new ProductRepository();
-    const useCase = new ProductCreateUseCase(repository);
+    const useCase = new CreateProductUseCase(repository);
 
     const input = {
       name: '',
@@ -54,7 +54,7 @@ describe('Create Product Use Case Integration Tests', () => {
 
   it('should thrown an error when price is invalid', async () => {
     const repository = new ProductRepository();
-    const useCase = new ProductCreateUseCase(repository);
+    const useCase = new CreateProductUseCase(repository);
 
     const input = {
       name: 'product',
