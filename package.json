@@ -4,7 +4,9 @@
     "@swc/core": "^1.2.148",
     "@swc/jest": "^0.2.20",
     "@types/jest": "^27.5.2",
+    "@types/supertest": "^6.0.2",
     "jest": "^27.5.1",
+    "supertest": "^6.3.4",
     "ts-node": "^10.9.1",
     "tslint": "^4.5.1",
     "typescript": "^5.1.3"
