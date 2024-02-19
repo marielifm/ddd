@@ -11,7 +11,7 @@ describe('E2E test for customer', () => {
 
   it('should create a customer', async () => {
     const response = await request(app)
-      .post('/customer')
+      .post('/customers')
       .send({
         name: 'John',
         address: {
@@ -31,7 +31,7 @@ describe('E2E test for customer', () => {
   });
 
   it('should not create a customer', async () => {
-    const response = await request(app).post('/customer').send({
+    const response = await request(app).post('/customers').send({
       name: 'John'
     });
 
@@ -40,7 +40,7 @@ describe('E2E test for customer', () => {
 
   it('should list all customers', async () => {
     const response1 = await request(app)
-      .post('/customer')
+      .post('/customers')
       .send({
         name: 'John',
         address: {
@@ -52,7 +52,7 @@ describe('E2E test for customer', () => {
       });
 
     const response2 = await request(app)
-      .post('/customer')
+      .post('/customers')
       .send({
         name: 'Jane',
         address: {
@@ -66,7 +66,7 @@ describe('E2E test for customer', () => {
     expect(response1.status).toBe(200);
     expect(response2.status).toBe(200);
 
-    const listResponse = await request(app).get('/customer').send();
+    const listResponse = await request(app).get('/customers').send();
     expect(listResponse.status).toBe(200);
     expect(listResponse.body.customers.length).toBe(2);
 
