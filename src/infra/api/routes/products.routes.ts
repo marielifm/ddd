@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
 import ProductRepository from '../../product/repository/sequelize/product.repository';
-import ListProductsUseCase from '../../../usecase/product/list/list.product.usecase';
-import FindProductUseCase from '../../../usecase/product/find/find.product.usecase';
-import CreateProductUseCase from '../../../usecase/product/create/create.product.usecase';
+import ListProductsUseCase from '../../../usecases/product/list/list.product.usecase';
+import FindProductUseCase from '../../../usecases/product/find/find.product.usecase';
+import CreateProductUseCase from '../../../usecases/product/create/create.product.usecase';
 
 export const productsRoute = express.Router();
 
